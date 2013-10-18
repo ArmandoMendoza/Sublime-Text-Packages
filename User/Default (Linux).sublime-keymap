@@ -1,0 +1,10 @@
+[
+	//Delete trainling spaces!
+	{ "keys": ["ctrl+shift+d"], "command": "delete_trailing_spaces" },
+	//ERB
+	{ "keys": ["ctrl+<"], "command": "erb" },
+	//Coffee Compiler
+	{ "keys": ["ctrl+shift+x"], "command": "coffee_compile" },
+  // Color Picker
+  { "keys": ["ctrl+shift+q"], "command": "color_pick" }
+]

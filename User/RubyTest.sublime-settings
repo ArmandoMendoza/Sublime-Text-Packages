@@ -1,0 +1,11 @@
+{
+  "run_rspec_command": "zeus rspec {relative_path}",
+  "run_single_rspec_command": "zeus rspec {relative_path}:{line_number}",
+  "check_for_rvm": true,
+  "ruby_use_scratch" : false,
+  "save_on_run": false,
+  "ignored_directories": [".git", "vendor", "tmp"],
+  "hide_panel": false,
+  "before_callback": "",
+  "after_callback": ""
+}

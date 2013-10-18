@@ -1,0 +1,26 @@
+{
+	"auto_upgrade_last_run": null,
+	"installed_packages":
+	[
+		"All Autocomplete",
+		"ApplySyntax",
+		"CoffeeCompile",
+		"CoffeeScript",
+		"ColorPicker",
+		"ERB Insert and Toggle Commands",
+		"Hayaku - tools for writing CSS faster",
+		"HTML Mustache",
+		"Package Control",
+		"Quijotipsum Snippet",
+		"Rails Partial",
+		"rspec-snippets",
+		"RubyTest",
+		"Sass",
+		"SideBarEnhancements",
+		"SideBarGit",
+		"SublimeLinter",
+		"SublimeREPL",
+		"TrailingSpaces",
+		"View In Browser"
+	]
+}
