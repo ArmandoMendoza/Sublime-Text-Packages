@@ -49,10 +49,19 @@ def settings_adapter(settings):
         else:
             raise InvalidCompilerSettingError(compiler)
 
-    # (compiler, options)
-    return (get_compiler(), {
-        'bare': settings.get('bare')
-    })
+    return {
+        # (compiler, options)
+        'compiler': (get_compiler(), {
+            'bare': settings.get('bare')
+        }),
+        'options': {
+            'syntax_patterns': settings.get('syntax_patterns')
+        }
+    }
+
+
+def loadSettings():
+    return sublime.load_settings("CoffeeCompile.sublime-settings")
 
 
 class CoffeeCompileCommand(sublime_plugin.TextCommand):
@@ -60,7 +69,7 @@ class CoffeeCompileCommand(sublime_plugin.TextCommand):
     PANEL_NAME = 'coffeecompile_output'
 
     def run(self, edit):
-        self.settings = sublime.load_settings("CoffeeCompile.sublime-settings")
+        self.settings = loadSettings()
         self.window   = self.view.window()
         self.editor   = SublimeTextEditorView(self.view)
 
@@ -68,7 +77,8 @@ class CoffeeCompileCommand(sublime_plugin.TextCommand):
         coffeescript = coffeescript.encode('utf8')
 
         try:
-            javascript = self._compile(coffeescript)
+            [compiler, options] = settings_adapter(self.settings)['compiler']
+            javascript = self._compile(coffeescript, compiler, options)
             self._write_javascript_to_panel(javascript, edit)
         except CoffeeCompilationError as e:
             self._write_compile_error_to_panel(e, edit)
@@ -79,7 +89,13 @@ class CoffeeCompileCommand(sublime_plugin.TextCommand):
             e = CoffeeCompilationError(path='', message="Unexpected Exception!", details=traceback.format_exc())
             self._write_compile_error_to_panel(e, edit)
 
-    def _compile(self, coffeescript):
+    def is_visible(self):
+        settings = loadSettings()
+        syntax_patterns = settings_adapter(settings)['options']['syntax_patterns']
+        current_syntax  = self.view.settings().get('syntax')
+        return len(syntax_patterns) == 0 or current_syntax in syntax_patterns
+
+    def _compile(self, coffeescript, compiler, options):
         filename = self.view.file_name()
 
         if filename:
@@ -87,7 +103,6 @@ class CoffeeCompileCommand(sublime_plugin.TextCommand):
         elif not self.settings.get('coffee_path', None):
             raise CoffeeCompilationCompilerNotFoundError()
 
-        (compiler, options) = settings_adapter(self.settings)
         return compiler.compile(coffeescript, options)
 
     def _create_panel(self):

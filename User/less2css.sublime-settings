@@ -1,0 +1,12 @@
+{
+	"autoCompile": false,
+	"ignorePrefixedFiles": false,
+	"lessBaseDir": "./",
+	"lesscCommand": false,
+	"main_file": false,
+	"minName": false,
+	"minify": true,
+	"outputDir": "./",
+	"outputFile": "",
+	"showErrorWithWindow": false
+}
