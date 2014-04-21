@@ -1,0 +1,8 @@
+{
+  "tab_or_space": "space",
+  "ruby": "/home/armando/.rvm/rubies/ruby-2.1.1/bin/ruby",
+  "file_patterns": ["\\.html\\.erb", "\\.rb", "\\.rake", "Rakefile", "Gemfile"],
+  "html_erb_patterns": ["\\.html\\.erb"],
+  "run_on_save": false,
+  "save_on_beautify": true
+}

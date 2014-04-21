@@ -1,6 +1,8 @@
 {
-  "run_rspec_command": "zeus rspec {relative_path}",
-  "run_single_rspec_command": "zeus rspec {relative_path}:{line_number}",
+  // "run_rspec_command": "zeus rspec {relative_path}",
+  // "run_single_rspec_command": "zeus rspec {relative_path}:{line_number}",
+  "run_rspec_command": "rspec {relative_path}",
+  "run_single_rspec_command": "rspec {relative_path}:{line_number}",
   "check_for_rvm": true,
   "ruby_use_scratch" : false,
   "save_on_run": false,
